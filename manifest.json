@@ -1,0 +1,362 @@
+{
+	"@platforms": ["android", "iPhone", "iPad"],
+	"id": "H5291D269",/*必选，应用的标识*/
+	"name": "艾欧特通讯录",/*必选，应用名称*/
+	"version": {
+		"name": "1.0",/*必选，版本名称*/
+		"code": ""
+	},
+	"description": "",/*可选，应用描述信息*/
+	"icons": {
+		"72": "icon.png"
+	},
+	"launch_path": "tongxunlu.html",/*必选，应用的入口页面，默认为根目录下的index.html；也可以是网络地址，网络地址必须以http://或https://开头*/
+	"developer": {
+		"email": "",/*可选，开发者名称*/
+		"name": "",/*可选，开发者邮箱地址*/
+		"url": ""
+	},
+	"permissions": {
+		
+		
+		"Cache": {
+			"description": "管理应用缓存"
+		},
+		
+		"Console": {
+			"description": "跟踪调试输出日志"
+		},
+		
+		"Device": {
+			"description": "访问设备信息"
+		},
+		
+		"Events": {
+			"description": "应用扩展事件"
+		},
+		"File": {
+			"description": "访问本地文件系统"
+		},
+		
+		
+		"Invocation": {
+			"description": "调用Native JS桥功能"
+		},
+
+		"Orientation": {
+			"description": "访问方向感应器"
+		},
+		"Proximity": {
+			"description": "访问距离感应器"
+		},
+		"Storage": {
+			"description": "管理应用本地数据"
+		},
+		"UI": {},
+		
+		"Runtime": {
+			"description": "访问运行期环境"
+		},
+		"XMLHttpRequest": {
+			"description": "跨域网络访问"
+		},
+		"Push": {
+			"description": "消息推送"
+		},
+		
+		
+		
+
+
+
+		
+		"Webview": {},
+		"NativeUI": {},
+		"Navigator": {},
+		"NativeObj": {},"Zip":{},"Gallery":{},"Uploader":{},"Downloader":{},"Accelerometer":{},"Barcode":{},"Push":{}
+	},
+	"plus": {
+		"popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，none为无侧滑返回功能，hide为侧滑隐藏Webview窗口。参考ask.dcloud.net.cn/article/102*/
+		"splashscreen": {
+			"autoclose": true,/*如果为true，程序启动的图片可以自动关闭，如果为false，开发者需要手动关闭*/
+			"waiting": true,
+			"delay": "0"
+		},
+		"runmode": "liberate",/*两个值，liberate或normal，前者在应用安装时释放资源，后者不需要释放资源*/
+		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+		"distribute": {
+			"debug": "",/*可选，是否为debug模式，可取值：true表示debug模式运行，false表示release模式运行，默认值为false*/
+			"apple": {
+				"appid": "",/*iOS必选，苹果开发网站申请的appid，如com.dheaven.hbuilder*/
+				"mobileprovision": "",/*iOS必选，打包配置文件*/
+				"password": "",/*iOS必选，导入配置文件密码*/
+				"p12": "",/*iOS必选，打包配置文件关联的个人证书*/
+				"devices": "universal",/*iphone，可取值iphone/ipad/universal*/
+				"frameworks": []
+			},
+			"google": {
+				"packagename": "",/*Android必选，程序包名，如com.dheaven.hbuilder*/
+				"keystore": "",/*Android必选，打包证书文件*/
+				"password": "",/*Android必选，打包证书密码*/
+				"aliasname": "",/*Android必选，打包证书别名*/
+				"permissions": ["<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
+			},
+			"orientation": ["portrait-primary"],/*必选*/
+			"icons": {
+				"ios": {
+					"prerendered": "", /*必选，是否高亮显示*/
+					"auto": "", /*可选，512x512，用于自动生成各种尺寸图标的大分辨率程序图标*/
+					"iphone": {
+						"normal": "unpackage/res/icons/57x57.png",/*可选，57x57，iPhone普通屏幕程序图标*/
+						"retina": "unpackage/res/icons/114x114.png",/*可选，114x114，iPhone高分屏程序图标*/
+						"retina7": "unpackage/res/icons/120x120.png",/*可选，120x120，iPhone iOS7高分屏程序图标*/
+						"spotlight-normal": "unpackage/res/icons/29x29.png", /*可选，29x29，iPhone Spotlight搜索程序图标*/
+						"spotlight-retina": "unpackage/res/icons/58x58.png", /*可选，58x58，iPhone高分屏Spotlight搜索程序图标*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*可选，80x80，iPhone iOS7高分屏Spotlight搜索程序图标*/
+						"settings-normal": "unpackage/res/icons/29x29.png", /*可选，29x29，iPhone设置页面程序图标*/
+						"settings-retina": "unpackage/res/icons/58x58.png",
+						"retina8": "unpackage/res/icons/180x180.png",
+						"settings-retina8": "unpackage/res/icons/87x87.png"
+					},
+					"ipad": {
+						"normal": "unpackage/res/icons/72x72.png", /*可选，72x72，iPad普通屏幕程序图标*/
+						"retina": "unpackage/res/icons/144x144.png", /*可选，144x144，iPad高分屏程序图标*/
+						"normal7": "unpackage/res/icons/76x76.png", /*可选，76x76，iPad iOS7程序图标*/
+						"retina7": "unpackage/res/icons/152x152.png", /*可选，152x152，iPad iOS7高分屏程序图标*/
+						"spotlight-normal": "unpackage/res/icons/50x50.png", /*可选，50x50，iPad Spotlight搜索程序图标*/
+						"spotlight-retina": "unpackage/res/icons/100x100.png", /*可选，100x100，iPad高分屏Spotlight搜索程序图标*/
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",/*可选，40x40，iPad iOS7 Spotlight搜索程序图标*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*可选，80x80，iPad iOS7高分屏Spotlight搜索程序图标*/
+						"settings-normal": "unpackage/res/icons/29x29.png",/*可选，29x29，iPad设置页面程序图标*/
+						"settings-retina": "unpackage/res/icons/58x58.png"
+					}
+				},
+				"android": {
+					"mdpi": "unpackage/res/icons/48x48.png", /*必选，48x48，普通屏程序图标*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*必选，48x48，大屏程序图标*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*必选，72x72，高分屏程序图标*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*必选，96x96，720P高分屏程序图标*/
+					"xxhdpi": "unpackage/res/icons/144x144.png"
+				}
+			},
+			"splashscreen": {
+				"ios": {
+					"iphone": {
+						"default": "C:\\Users\\begdate1\\Desktop\\icon\\320.png", /*必选，320x480，iPhone3启动图片*/
+						"retina35": "C:\\Users\\begdate1\\Desktop\\icon\\640.png",/*必选，640x960，3.5英寸设备(iPhone4)启动图片*/
+						"retina40": "images/0-启动界面_3.png",
+						"retina47": "images/0-启动界面_3.png",
+						"retina55": "C:\\Users\\begdate1\\Desktop\\icon\\1242.png",
+						"retina55l": "C:\\Users\\begdate1\\Desktop\\icon\\2208.png"
+					},
+					"ipad": {
+						"portrait": "C:\\Users\\begdate1\\Desktop\\icon\\768.png", /*可选，768x1004，需支持iPad时必选，iPad竖屏启动图片*/
+						"portrait-retina": "C:\\Users\\begdate1\\Desktop\\icon\\1536.png",/*可选，1536x2008，需支持iPad时必选，iPad高分屏竖屏图片*/
+						"landscape": "", /*可选，1024x748，需支持iPad时必选，iPad横屏启动图片*/
+						"landscape-retina": "", /*可选 ，2048x1496，需支持iPad时必选，iPad高分屏横屏启动图片*/
+						"portrait7": "", /*可选，768x1024，需支持iPad iOS7时必选，iPad竖屏启动图片*/
+						"portrait-retina7": "C:\\Users\\begdate1\\Desktop\\太古比亚迪\\144.png",/*可选，1536x2048，需支持iPad iOS7时必选，iPad高分屏竖屏图片*/
+						"landscape7": "images/0-启动界面_3.png"
+					}
+				},
+				"android": {
+					"mdpi": "images/qidongjiem.png", /*必选，240x282，普通屏启动图片*/
+					"ldpi": "images/qidongjiem.png", /*必选，320x442，大屏启动图片*/
+					"hdpi": "/Users/pan/Downloads/App开场.png",
+					"xhdpi": "/Users/pan/Downloads/App开场.png",
+					"xxhdpi": "/Users/pan/Downloads/App开场.png"
+				}
+			}
+		}
+	},
+	"dependencies": {
+		"pages": {
+			"tongxunlu.html": {
+				"resources": [
+					"js/app.js",
+					"images/callback.png",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/iconfont-touxiang.png",
+					"css/iot.css",
+					"images/call.png"
+				],
+				"refer": [
+					"user.html"
+				],
+				"priority": 0
+			},
+			"index.html": {
+				"resources": [
+					"images/call.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"user.html": {
+				"resources": [
+					"images/yuantiao.jpg",
+					"js/app.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/iot.css",
+					"images/callback.png",
+					"js/mui.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"tab-webview-subpage-setting.html": {
+				"resources": [
+					"images/ic.png",
+					"js/mui.view.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"tab-webview-main.html": {
+				"resources": [
+					"news.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/iot.css"
+				],
+				"refer": [
+					"guide.html",
+					"index-menu.html",
+					"tab-webview-subpage-setting.html",
+					"tab-webview-subpage-chat.html",
+					"tab-webview-subpage-contact.html"
+				],
+				"priority": 0
+			},
+			"tab-webview-subpage-contact.html": {
+				"resources": [
+					"js/app.js",
+					"images/iconfont-touxiang.png",
+					"images/callback.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"news.html": {
+				"resources": [
+					"images/b.jpg",
+					"images/a.jpg",
+					"images/wxgd.png",
+					"images/shuijiao.jpg",
+					"images/c.jpg",
+					"js/app.js",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"tab-webview-subpage-about.html",
+				"images/barcode.png",
+				"images/cbd.jpg",
+				"game/media2/gameBackground2.jpg",
+				"game/media2/success.png",
+				"login.html",
+				"game/media2/gameBackground.jpg",
+				"images/submit_pressed.png",
+				"info.html",
+				"js/common.js",
+				"game/preloaderHD/rotatePortrait.png",
+				"game/softgames_game.js",
+				"forget_password.html",
+				"images/60x60.gif",
+				"user_bak.html",
+				"game/media2/03.png",
+				"webview_oa.html",
+				"game/media2/wind.png",
+				"game/media2/success2.png",
+				"game/webfont/stylesheet.css",
+				"images/login_input_bg.png",
+				"game/media2/04.png",
+				"js/update.js",
+				"index_bak1.html",
+				"game/media2/05.png",
+				"images/muwu.jpg",
+				"css/mui.numbox.css",
+				"list.html",
+				"game/media2/01.png",
+				"game/media2/goal.png",
+				"index_bak.html",
+				"media-list.html",
+				"slider-default.html",
+				"webview_redmine.html",
+				"css/common.css",
+				"game/preloaderHD/eyeAnim.png",
+				"index-menu_bak.html",
+				"game/media2/aimArrow.png",
+				"game/media2/front3.png",
+				"images/psd_icon.png",
+				"game/media2/button_normal.png",
+				"offcanvas-drag-right.html",
+				"game/media2/02.png",
+				"game/media2/00.png",
+				"reg.html",
+				"game/assets/sg.hooks.js",
+				"game/preloaderHD/loadingBar0.png",
+				"js/mui.numbox.js",
+				"js/mui.locker.js",
+				"game/media2/button_select.png",
+				"game/media2/09.png",
+				"images/login_top_icon.png",
+				"game/media2/07.png",
+				"images/pull_arrow.png",
+				"offcanvas-drag-right-plus-main.html",
+				"game/media2/schein.png",
+				"game/media2/gameBackground3.jpg",
+				"login_bak.html",
+				"barcode_scan.html",
+				"barcode.html",
+				"setting.html",
+				"images/pull_fresh.png",
+				"js/mui.enterfocus.js",
+				"webview_game.html",
+				"js/immersed.js",
+				"game/preloaderHD/logoWithoutRim.png",
+				"game/media2/pause_select.png",
+				"game/assets/softgames-1.1.js",
+				"game/preloaderHD/loadingBar1.png",
+				"game/assets/sg-loader.gif",
+				"images/use_icon.png",
+				"game/preloaderHD/loadingTextAnim.png",
+				"game/media2/goal3.png",
+				"game/bgame.html",
+				"images/42x42.gif",
+				"game/media2/paper.png",
+				"game/media2/popup.png",
+				"game/icon.png",
+				"game/media2/block.png",
+				"images/d.jpg",
+				"game/media2/08.png",
+				"game/media2/box.png",
+				"game/media2/trash.png",
+				"images/iconfont-dadianhuatianchong.png",
+				"game/media2/goal2.png",
+				"game/media2/pause_normal.png",
+				"offcanvas-drag-right-plus-menu.html",
+				"webview_mail.html",
+				"css/style.css",
+				"game/media2/06.png",
+				"game/media2/splash.jpg",
+				"images/qidongjiem.png",
+				"game/preloaderHD/rim.png",
+				"game/ni7seg-webfont.woff2",
+				"game/media2/shadow.png"
+			]
+		}
+	},
+	"unpackage":[
+	  
+	]
+}

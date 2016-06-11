@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>艾欧特集团</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+        <link rel="stylesheet" href="css/iot.css">
+        <script src="js/mui.min.js"></script>
+        <script src="js/app.js"></script>
+	</head>
+
+	<body>
+		<header id="main_header" class="mui-bar mui-bar-nav">
+			<h1 id="title" class="mui-title">通讯录</h1>
+			  <a id="info" class="mui-icon mui-icon-refresh mui-pull-right" style="color: #207ac0;"></a>
+		</header>
+		<div class="mui-content" id="pullrefresh">
+			<div class="mui-scroll">
+        	<ul class="mui-table-view">
+            	
+            </ul>
+            </div>
+		</div>
+		<script id="list-tpl-nocornet" type="text/template">
+			
+			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<img src="images/60x60.gif" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name" onclick="showuid(this)"
+									departmentid = "[departmentid]" uid="[uid]">[username]</h4>
+									<span class="oa-contact-position mui-h6">[job]</span>
+								</div>
+								<a class="oa-contact-email mui-h6" href="tel:[tel]">[tel]</>
+								<div class="tel-label ">
+									<a href="javascript:;" class="call-btn btn" onclick="call([tel]);"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+        </script>
+        <script id="list-tpl" type="text/template">
+			
+			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+				<li class="mui-table-view-cell">
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell"departmentid = "[departmentid]" uid="[uid]" onclick="showuid(this)">
+								<img src="images/iconfont-touxiang.png" />
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name" onclick="showuid(this)"
+									departmentid = "[departmentid]" uid="[uid]">[username]</h4>
+									<span class="oa-contact-position mui-h6">[job]</span>
+								</div>
+								<a class="oa-contact-email mui-h6"  href="tel:[tel]">[tel]</>
+								<div class="tel-label">
+									<a href="javascript:;" class="cornet-call-btn btn"  onclick="call([tel]);"></a>
+									<a href="javascript:;" class="call-btn btn" onclick="call([tel]);"></a>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+        </script>
+        <script>
+        	mui.init({
+				swipeBack: false,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					}
+//					up: {
+//						contentrefresh: '正在加载...',
+//						callback: pullupRefresh
+//					}
+				}
+			});
+        	var table ;
+        	mui.plusReady(function() {
+        		table = document.body.querySelector('.mui-table-view');
+        		
+        		var templist = JSON.parse(plus.storage.getItem('phonelist'));//读取缓存
+        		
+        		if(typeof(templist) == 'object' && templist == null){
+        			
+        			
+        			initList();
+        		}else{
+        			jsonSet(templist);
+        		}
+        		
+        		var backButtonPress = 0;
+				mui.back = function(event) {
+					backButtonPress++;
+					if (backButtonPress > 1) {
+						plus.runtime.quit();
+					} else {
+						plus.nativeUI.toast('再按一次退出应用');
+					}
+					setTimeout(function() {
+						backButtonPress = 0;
+					}, 1000);
+					return false;
+				};
+        		
+        	});
+        	//拨打电话方法
+        	function call(number){
+        		
+        		switch ( plus.os.name ) {
+			        case "Android":
+//			        	var Intent = plus.android.importClass("android.content.Intent");
+//						var Uri = plus.android.importClass("android.net.Uri");
+//						// 获取主Activity对象的实例
+//		 				var main = plus.android.runtimeMainActivity();
+//		 				// 创建Intent
+//						var phone = "tel:"+number;
+//						var uri = Uri.parse(phone); // 这里可修改电话号码
+//						var call = new Intent("android.intent.action.CALL",uri);
+//						// 调用startActivity方法拨打电话
+//						main.startActivity( call );
+					plus.device.dial( number, false );
+			        	break;
+			        case "iOS":
+			        	var NSURL = plus.ios.import("NSURL");
+        				var phone = "telprompt://"+number;
+		        		var url = NSURL.URLWithString(phone);
+		        		
+		        		var UIApplication = plus.ios.import("UIApplication");
+		        		var sharedApplication = UIApplication.sharedApplication();
+		        		sharedApplication.openURL(url);
+			        	break;
+			        default:
+			        // 其它平台
+			        break;
+			    }
+			}
+        	
+        	
+        	 //处理右上角更新按钮的
+			document.getElementById('info').addEventListener('tap', function() {
+				
+				initList();
+			});
+          
+        	 
+			
+        	/*
+        	 * 查询更新数据
+        	 */
+        	function initList(){
+        		plus.nativeUI.showWaiting();//等待遮罩
+				
+				mui.ajax(api+'',{
+					data:{},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						
+						plus.storage.setItem('phonelist', JSON.stringify(data));//写缓存
+						
+						plus.nativeUI.toast(data.info);
+						// 如果返回数据有错误则警告
+						if (data.status == 0) {
+							return false;
+						}
+						// 重置data数据
+						
+						jsonSet(data);
+						plus.nativeUI.closeWaiting();//等待遮罩去除
+						
+					},
+					error:function(xhr,type,errorThrown){
+						plus.nativeUI.toast('查询失败');
+						plus.nativeUI.closeWaiting();//等待遮罩去除
+					}
+				});
+        	}
+        	
+			
+			
+			/**
+			 * 填充列表
+			 * @param {Object} data
+			 */
+			function jsonSet(data){
+				table.innerHTML='';
+				data = data.data;
+				for(var i in  data){
+					
+						tableFiltersss(data[i],i);
+				}
+			}
+			/**
+			 * 填充列表具体方法
+			 * @param {Object} data
+			 */
+			function tableFiltersss(data,departmentid){
+				plists = data['data'];
+				
+				var html='',htmls='';
+				for(var j in  plists){
+					if(typeof(plists[j])!='undefined' && !plists[j]['tel'] && typeof(plists[j]['tel'])!="undefined" && plists[j]['tel']!=0){
+						html+= document.getElementById("list-tpl-nocornet").innerHTML
+							.replace(/\[username]/g, plists[j]['username'])
+							.replace(/\[tel]/g, plists[j]['tel'])
+							.replace(/\[job]/g, plists[j]['job'])
+							.replace(/\[departmentid]/g, departmentid)
+						.replace(/\[uid]/g, j);
+					}else{
+						if(typeof(plists[j])!='undefined'){
+							if(plists[j]['tel']!=""){
+								html+= document.getElementById("list-tpl").innerHTML
+									.replace(/\[username]/g, plists[j]['username'])
+									.replace(/\[tel]/g, plists[j]['tel'])
+									.replace(/\[job]/g, plists[j]['job'])
+									.replace(/\[departmentid]/g, departmentid)
+						.replace(/\[uid]/g, j);
+							}else{
+								html+= document.getElementById("list-tpl").innerHTML
+									.replace(/\[username]/g, plists[j]['username'])
+									.replace(/\[tel]/g, plists[j]['tel_2'])
+									.replace(/\[job]/g, plists[j]['job'])
+									.replace(/\[departmentid]/g, departmentid)
+						.replace(/\[uid]/g, j);
+							}
+							
+						}
+					}
+						
+				}
+				if(data['departname']==undefined){
+					htmls = '<a class="mui-navigate-right"><span class="mui-badge mui-badge-warning">'+plists.length+'</span>无部门分配</a>';	
+				}else
+				{
+					htmls = '<a class="mui-navigate-right"><span class="mui-badge mui-badge-warning">'+plists.length+'</span>'+data['departname']+'</a>';
+				}
+						
+				html = htmls+html;
+				var li = document.createElement('li');
+				li.className = 'mui-table-view-cell  mui-collapse';
+				li.innerHTML = html;
+				table.appendChild(li);
+			}
+			function showuid(dom){
+				mui.openWindow({
+				    url:'user.html',
+				    id:'user.html',
+				    extras:{
+				        uid:dom.getAttribute("uid"),
+				        departmentid:dom.getAttribute("departmentid"),
+				    }
+				});
+			}
+			
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					initList();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1000);
+			}
+			var count = 0;
+			
+		</script>
+        
+        
+	</body>
+
+</html>

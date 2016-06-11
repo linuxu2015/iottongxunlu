@@ -1,0 +1,106 @@
+/*!
+ * =====================================================
+ * Mui v1.5.0 (https://github.com/dcloudio/mui)
+ * =====================================================
+*/
+
+.header-nav{
+	background-color:#06F;
+}
+.header-nav h1{
+	color: #fff;
+	letter-spacing: 3px;
+}
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell{
+	padding-left:20px;
+}
+.mui-table-view-cell>a:not(.mui-btn){
+	font-size:14px;
+	color:#666;
+}
+
+.oa-contact-cell.mui-table .mui-table-cell {
+	padding: 3px 0;
+	vertical-align: middle;
+}
+
+.oa-contact-cell {
+	position: relative;
+	margin: -11px 0;
+}
+
+.oa-contact-avatar {
+	width: 75px;
+}
+.oa-contact-avatar img {
+	border-radius: 50%;
+}
+.oa-contact-content {
+	width: 100%;
+}
+.oa-contact-name {
+	margin-right: 20px;
+}
+.oa-contact-name, oa-contact-position {
+	float: left;
+}
+.user-info{
+	position:relative;
+}
+.call-btn{
+	position:absolute;
+	top:23px;
+	right:10px;
+	height:35px;
+	width:25px;
+	display:block;
+	background:url(../images/callback.png) no-repeat center center;
+}
+.call-btn-user{
+	position:absolute;
+	top:2px;
+	right:20px;
+	height:35px;
+	width:25px;
+	display:block;
+	background:url(../images/callback.png) no-repeat center center;
+}
+.oa-contact-cell.mui-table .user-head{
+	padding:5px 0;
+}
+.oa-contact-cell.mui-table .user-head img{
+	height:50px;
+}
+.mui-input-row .usermessage{
+	float:left;
+	width:100%;
+	padding:20px 15px;
+	font-family:"Helvetica Neue",
+	Helvetica,sans-serif;
+	line-height:1.1;
+}
+
+.mui-content-padded{
+	margin-top: 20px;
+	
+}
+#pullrefresh{
+	background: white;
+	padding-bottom: 53px;
+}
+#logo{
+	margin-top: 20px;
+	text-align: center;
+	vertical-align: middle;
+}
+#submit{
+	background: url(../images/submit_pressed.png);
+	height: 45px;
+	width: 80%;
+	color: white;
+	font-size: 16px;
+}
+#slider{
+	
+	height: 145px;
+}

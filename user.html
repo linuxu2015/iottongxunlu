@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>艾欧特集团</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+        <link rel="stylesheet" href="css/iot.css">
+        <script src="js/mui.min.js"></script>
+        <script src="js/mui.js"></script>
+        <script src="js/app.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title" id="toptitle"></h1>
+		</header>
+		<div id="slider" class="mui-slider" >
+			<div class="mui-slider-group mui-slider-loop">
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img src="./images/yuantiao.jpg">
+					</a>
+				</div>
+			</div>
+		</div>
+	 <div id="usermessage">
+	 
+	 </div>
+	 
+		<script>
+		
+			mui.plusReady(function() {
+				plus.key.addEventListener('backbutton',backListener,false);
+        		var self = plus.webview.currentWebview();
+        		var templist = JSON.parse(plus.storage.getItem('phonelist'));//读取缓存
+        		var departname = templist["data"][self.departmentid]["departname"];
+        		plists = templist["data"][self.departmentid]["data"][self.uid];
+        		var html = '';
+        		//部门名称的添加
+        		html += '<div class="mui-content-padded" ><font size="5">'+departname+'</font><font style="text-align: right;">'+plists['job']+'</font></div>';
+        		document.getElementById("toptitle").innerHTML = '<b>'+plists['username']+"</b><font size='2px'>的详细信息</font>";
+        		for(var j in  plists){
+        			switch (j)
+        			{
+        				case "username":
+        				html += '<div class="mui-input-group"><div class="mui-input-row" datasrc="['+plists[j]+']" ><label class="usermessage">姓名：'+plists[j]+'</label></div></div>';
+        				break;
+        				case "tel":
+        				if(plists[j]!=""){
+        					html += '<div class="mui-input-group"><div class="mui-input-row" datasrc="['+plists[j]+']" ><label class="usermessage">工作电话： '+plists[j]+'</label><a href="javascript:;"  class="call-btn-user btn" onclick="dialTest(\''+plists[j]+'\');"></a></div></div>';
+        				}else{
+        					html += '<div class="mui-input-group"><div class="mui-input-row" datasrc="['+plists[j]+']" ><label class="usermessage">工作电话： '+plists[j]+'</label></div></div>';
+        				}
+        				
+        				break;
+        				case "cornet_2":
+        				
+        				if(plists[j]!=""){
+        					html += '<div class="mui-input-group"><div class="mui-input-row" datasrc="['+plists[j]+']" ><label class="usermessage">短号：'+plists[j]+'</label><a href="javascript:;"  class="call-btn-user btn" onclick="dialTest(\''+plists[j]+'\');"></a></div></div>';
+        				}else{
+        					html += '<div class="mui-input-group"><div class="mui-input-row" datasrc="['+plists[j]+']" ><label class="usermessage">短号：'+plists[j]+'</label></div></div>';
+        				}
+        				
+        				break;
+        			case "tel_2":
+        			if(plists[j]!=""){
+        					html += '<div class="mui-input-group"><div class="mui-input-row" datasrc="['+plists[j]+']" ><label class="usermessage">个人电话：'+plists[j]+'</label><a href="javascript:;" class="call-btn-user btn" onclick="dialTest(\''+plists[j]+'\');"></a></div></div>';
+        				}else{
+        					html += '<div class="mui-input-group"><div class="mui-input-row" datasrc="['+plists[j]+']" ><label class="usermessage">个人电话：'+plists[j]+'</label></div></div>';
+        				}
+        				
+        				break;
+        				case "email":
+        				html += '<div class="mui-input-group"><div class="mui-input-row" datasrc="['+plists[j]+']"><label class="usermessage">Email：'+plists[j]+'</label></div></div>';
+        				break;
+        				
+        			}
+        		}
+				document.getElementById("usermessage").innerHTML = html;
+				
+				
+			
+
+        	});
+function backListener(){
+    mui.back();
+}
+
+
+        	function dialTest(dom){
+//      		plus.nativeUI.toast(dom.getAttribute("datasrc"));
+//      		if(dom.getAttribute("datasrc")!="[]"){
+        			plus.device.dial( dom, false );
+//      		}
+        		
+        	}
+        	
+        	  
+		</script>
+		
+	</body>
+
+</html>
